@@ -20,6 +20,7 @@ function loginUser(req: Request, res: Response, next: NextFunction) {
 
     passport.authenticate(
       'local',
+      { session: true },
       (error: any, user: any, info: any, status: any) => {
         if (error) return next(error);
         if (!user) {

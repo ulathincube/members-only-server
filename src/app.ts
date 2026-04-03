@@ -18,7 +18,12 @@ const PostgresSession = pgSession(session);
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ['https://members-only-26.netlify.app/'],
+    credentials: true,
+  }),
+);
 
 app.use(
   session({
@@ -27,7 +32,7 @@ app.use(
       createTableIfMissing: true,
     }),
     secret: SESSION_SECRET,
-    saveUninitialized: true,
+    saveUninitialized: false,
     rolling: true,
     resave: false,
     cookie: {
