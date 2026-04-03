@@ -48,8 +48,11 @@ async function findUserById(id: string) {
       [id],
     );
 
+    console.log(response.rows[0]);
+
     return response.rows[0];
   } catch (error: any) {
+    console.log('error encountered..user not found!');
     if (error instanceof Error) throw error;
   }
 }

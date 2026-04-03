@@ -36,12 +36,17 @@ const localStrategy = new LocalStrategy(options, verify);
 passport.use(localStrategy);
 
 passport.serializeUser((user, done) => {
-  console.log('serialize', user);
   done(null, user.user_id);
 });
 
-passport.deserializeUser(async (id: string, done) => {
-  const user = await userModel.findUserById(id);
-  console.log('deserialize', user, id);
-  return done(null, user);
+passport.deserializeUser(async (user_id: string, done) => {
+  try {
+  } catch (error) {
+    const user = await userModel.findUserById(user_id);
+    console.log('deserialize', user, user_id);
+    return done(null, user);
+    if (error instanceof Error) {
+      return done(error, null);
+    }
+  }
 });
