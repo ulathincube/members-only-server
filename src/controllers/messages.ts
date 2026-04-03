@@ -59,14 +59,12 @@ export async function getMessagesByUserId(
 
     const authorId = req.user!.user_id;
 
-    console.log({ recipientId, user: req.user });
-
     if (recipientId && typeof recipientId === 'string') {
       const messages = await messageModel.getMessagesByUserId(
         parseInt(recipientId),
         parseInt(authorId),
       );
-      console.log({ messages });
+
       return res.status(200).json(messages);
     }
 

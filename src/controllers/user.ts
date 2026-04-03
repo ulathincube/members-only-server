@@ -16,8 +16,6 @@ async function createNewUser(req: Request, res: Response, next: NextFunction) {
     const salt = await bcrypt.genSalt(SALTROUNDS);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    console.log({ firstName, lastName, email, hashedPassword });
-
     await userModel.createUser({
       firstName,
       lastName,
