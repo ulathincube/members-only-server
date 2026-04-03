@@ -11,6 +11,10 @@ import session from 'express-session';
 import passport from 'passport';
 import { SESSION_SECRET } from './config/constants.js';
 import getUser from './middlewares/getUser.js';
+import pgSession from 'connect-pg-simple';
+import pool from './config/pool.js';
+
+const PostgresSession = pgSession(session);
 
 const app = express();
 
@@ -24,6 +28,10 @@ app.use(express.json());
 
 app.use(
   session({
+    store: new PostgresSession({
+      pool,
+      createTableIfMissing: true,
+    }),
     secret: SESSION_SECRET,
     saveUninitialized: false,
     rolling: true,
