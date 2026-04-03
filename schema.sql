@@ -1,6 +1,3 @@
-CREATE DATABASE members_only;
-
--- foreign keys
 
 CREATE TYPE status AS ENUM('unverified', 'verified');
 

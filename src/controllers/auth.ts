@@ -71,6 +71,7 @@ async function verifyPhrase(req: Request, res: Response, next: NextFunction) {
     // if match edit member_status to verified
 
     if (match) {
+      console.log({ user: req.user });
       userModel.verifyUser(parseInt(req.user!.user_id));
       return res.status(200).json({ verified: true });
 
