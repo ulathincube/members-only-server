@@ -32,7 +32,7 @@ app.use(
       createTableIfMissing: true,
     }),
     secret: SESSION_SECRET,
-    saveUninitialized: false,
+    saveUninitialized: true,
     rolling: true,
     resave: false,
     cookie: {

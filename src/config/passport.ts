@@ -25,8 +25,6 @@ async function verify(email: string, password: string, done: any) {
         message: 'Incorrect email address or password',
       });
 
-  
-
     return done(null, user);
   } catch (error) {
     if (error instanceof Error) return done(error);
@@ -38,12 +36,12 @@ const localStrategy = new LocalStrategy(options, verify);
 passport.use(localStrategy);
 
 passport.serializeUser((user, done) => {
-
+  console.log('serialize', user);
   done(null, user.user_id);
 });
 
 passport.deserializeUser(async (id: string, done) => {
-
   const user = await userModel.findUserById(id);
+  console.log('deserialize', user, id);
   return done(null, user);
 });
