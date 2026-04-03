@@ -20,7 +20,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['https://members-only-26.netlify.app'],
+    origin: 'https://members-only-26.netlify.app',
     credentials: true,
   }),
 );
