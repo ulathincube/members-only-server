@@ -29,8 +29,6 @@ function loginUser(req: Request, res: Response, next: NextFunction) {
           });
         }
 
-        // console.log({ error, user, info, status });
-
         req.login(user, error => {
           if (error) return next(error);
 

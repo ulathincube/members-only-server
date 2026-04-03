@@ -20,7 +20,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['https://members-only-26.netlify.app/'],
+    origin: ['https://members-only-26.netlify.app'],
     credentials: true,
   }),
 );
@@ -37,6 +37,7 @@ app.use(
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60,
+      secure: true,
     },
   }),
 );
