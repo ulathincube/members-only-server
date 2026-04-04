@@ -19,9 +19,11 @@ const PostgresSession = pgSession(session);
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 app.use(
   cors({
-    origin: 'https://members-only-client-ohyz.onrender.com',
+    origin: ['https://members-only-client-ohyz.onrender.com'],
     credentials: true,
   }),
 );
@@ -36,6 +38,7 @@ app.use(
     saveUninitialized: true,
     rolling: true,
     resave: false,
+    unset: 'destroy',
     cookie: {
       maxAge: 1000 * 60 * 60,
       sameSite: 'none',

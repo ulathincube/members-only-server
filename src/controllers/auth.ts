@@ -20,7 +20,6 @@ function loginUser(req: Request, res: Response, next: NextFunction) {
 
     passport.authenticate(
       'local',
-      { session: true },
       (error: any, user: any, info: any, status: any) => {
         if (error) return next(error);
         if (!user) {
@@ -33,7 +32,10 @@ function loginUser(req: Request, res: Response, next: NextFunction) {
           if (error) return next(error);
 
           delete user.password;
-          return res.status(200).json(user);
+          console.log({
+            user,
+          });
+          return res.status(200).json({ message: 'Logged in' });
         });
       },
     )(req, res, next);
@@ -69,8 +71,8 @@ async function verifyPhrase(req: Request, res: Response, next: NextFunction) {
 
     // if match edit member_status to verified
 
+    console.log({ match, user: req.user });
     if (match) {
-      console.log({ user: req.user });
       userModel.verifyUser(parseInt(req.user!.user_id));
       return res.status(200).json({ verified: true });
 
