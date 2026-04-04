@@ -19,6 +19,9 @@ const PostgresSession = pgSession(session);
 
 const app = express();
 
+// proxy
+app.set('trust proxy', 1);
+
 app.use(
   cors({
     origin: 'https://members-only-26.netlify.app',
@@ -39,7 +42,7 @@ app.use(
     cookie: {
       sameSite: 'none',
       maxAge: 1000 * 60 * 60,
-      secure: true,
+      httpOnly: false,
     },
   }),
 );
