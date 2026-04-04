@@ -36,13 +36,15 @@ app.use(
       createTableIfMissing: true,
     }),
     secret: SESSION_SECRET,
-    saveUninitialized: true,
+    saveUninitialized: false,
     rolling: true,
     resave: false,
     cookie: {
+      domain: 'members-only-26.netlify.app',
+      httpOnly: true,
       sameSite: 'none',
       maxAge: 1000 * 60 * 60,
-      httpOnly: false,
+      secure: true,
     },
   }),
 );
