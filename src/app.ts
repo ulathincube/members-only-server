@@ -13,6 +13,7 @@ import { SESSION_SECRET } from './config/constants.js';
 import getUser from './middlewares/getUser.js';
 import pgSession from 'connect-pg-simple';
 import pool from './config/pool.js';
+import logger from './middlewares/logger.js';
 
 const PostgresSession = pgSession(session);
 
@@ -20,7 +21,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['https://members-only-26.netlify.app'],
+    origin: 'https://members-only-26.netlify.app',
     credentials: true,
   }),
 );
@@ -32,10 +33,11 @@ app.use(
       createTableIfMissing: true,
     }),
     secret: SESSION_SECRET,
-    saveUninitialized: false,
+    saveUninitialized: true,
     rolling: true,
     resave: false,
     cookie: {
+      sameSite: 'none',
       maxAge: 1000 * 60 * 60,
       secure: true,
     },
@@ -46,6 +48,8 @@ app.use(passport.session());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(logger);
 
 app.use('/api/messages', getUser, messagesRouter);
 app.use('/api/auth', authRouter);
