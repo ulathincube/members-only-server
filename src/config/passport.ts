@@ -41,10 +41,11 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (user_id: string, done) => {
   try {
-  } catch (error) {
+    console.log('!!!!deserializing!!!!!');
     const user = await userModel.findUserById(user_id);
     console.log('deserialize', user, user_id);
     return done(null, user);
+  } catch (error) {
     if (error instanceof Error) {
       return done(error, null);
     }

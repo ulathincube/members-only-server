@@ -33,13 +33,11 @@ app.use(
       createTableIfMissing: true,
     }),
     secret: SESSION_SECRET,
-    saveUninitialized: false,
+    saveUninitialized: true,
     rolling: true,
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60,
-      secure: true,
-      sameSite: 'none',
     },
   }),
 );
