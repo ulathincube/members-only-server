@@ -40,7 +40,6 @@ app.use(
     rolling: true,
     resave: false,
     cookie: {
-      sameSite: 'none',
       maxAge: 1000 * 60 * 60,
     },
   }),
