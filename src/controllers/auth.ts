@@ -32,10 +32,8 @@ function loginUser(req: Request, res: Response, next: NextFunction) {
           if (error) return next(error);
 
           delete user.password;
-          console.log({
-            user,
-          });
-          return res.status(200).json({ message: 'Logged in' });
+
+          return res.status(200).json(user);
         });
       },
     )(req, res, next);
