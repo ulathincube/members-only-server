@@ -40,11 +40,8 @@ app.use(
     rolling: true,
     resave: false,
     cookie: {
-      domain: 'members-only-26.netlify.app',
-      httpOnly: true,
       sameSite: 'none',
       maxAge: 1000 * 60 * 60,
-      secure: true,
     },
   }),
 );
