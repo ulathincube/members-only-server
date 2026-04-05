@@ -17,6 +17,11 @@ import logger from './middlewares/logger.js';
 
 const PostgresSession = pgSession(session);
 
+const store = new PostgresSession({
+  pool,
+  createTableIfMissing: true,
+});
+
 const app = express();
 
 app.set('trust proxy', 1);
@@ -30,19 +35,15 @@ app.use(
 
 app.use(
   session({
-    store: new PostgresSession({
-      pool,
-      createTableIfMissing: true,
-    }),
     secret: SESSION_SECRET,
-    saveUninitialized: true,
+    store,
+    saveUninitialized: false,
     rolling: true,
     resave: false,
-    unset: 'destroy',
     cookie: {
       maxAge: 1000 * 60 * 60,
-      sameSite: 'none',
-      secure: true,
+      // sameSite: 'none',
+      // secure: true,
     },
   }),
 );
