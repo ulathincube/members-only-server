@@ -10,7 +10,7 @@ import './config/passport.js';
 import session from 'express-session';
 import passport from 'passport';
 import { SESSION_SECRET } from './config/constants.js';
-import getUser from './middlewares/getUser.js';
+import checkIsAuthenticated from './middlewares/checkIsAuthenticated.js';
 import pgSession from 'connect-pg-simple';
 import pool from './config/pool.js';
 import logger from './middlewares/logger.js';
@@ -54,7 +54,7 @@ app.use(express.json());
 
 app.use(logger);
 
-app.use('/api/messages', getUser, messagesRouter);
+app.use('/api/messages', checkIsAuthenticated, messagesRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/index', indexRouter);
