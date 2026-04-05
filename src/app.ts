@@ -41,7 +41,6 @@ app.use(
     rolling: true,
     resave: false,
     cookie: {
-      domain: 'members-only-client-ohyz.onrender.com',
       maxAge: 1000 * 60 * 60,
       httpOnly: false,
       sameSite: 'lax',
