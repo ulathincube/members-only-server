@@ -28,7 +28,7 @@ app.set('trust proxy', 1);
 
 app.use(
   cors({
-    origin: 'https://members-only-client-ohyz.onrender.com',
+    origin: ['https://members-only-client-ohyz.onrender.com'],
     credentials: true,
   }),
 );
