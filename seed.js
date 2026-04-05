@@ -14,7 +14,7 @@ async function seedDatabase() {
   try {
     const query = readFileSync(sqlFile, 'utf-8').toString();
     await pool.query(query);
-    console.log('database seeded!');
+    console.log('database seeded! / edited');
   } catch (error) {
     if (error instanceof Error) throw error;
   }
