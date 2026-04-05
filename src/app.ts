@@ -41,10 +41,11 @@ app.use(
     rolling: true,
     resave: false,
     cookie: {
+      // domain: 'members-only-client-ohyz.onrender.com',
       maxAge: 1000 * 60 * 60,
-      httpOnly: false,
-      // sameSite: 'none',
-      // secure: true,
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
     },
   }),
 );
