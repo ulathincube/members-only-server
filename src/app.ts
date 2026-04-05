@@ -37,12 +37,14 @@ app.use(
   session({
     secret: SESSION_SECRET,
     store,
-    saveUninitialized: false,
+    saveUninitialized: true,
     rolling: true,
     resave: false,
     cookie: {
+      domain: 'https://members-only-client-ohyz.onrender.com',
       maxAge: 1000 * 60 * 60,
       httpOnly: false,
+      sameSite: 'lax',
       // sameSite: 'none',
       // secure: true,
     },
